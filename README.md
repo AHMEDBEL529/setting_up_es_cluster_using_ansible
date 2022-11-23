@@ -1,4 +1,4 @@
-# Setting up Elasticsearch Cluster using ansible :
+# Setting up an Elasticsearch Cluster using ansible :
 ## Introduction :
 Elasticsearch is a powerful open-source, RESTful, distributed real-time search and analytics engine which provides the ability for full-text search. The aim of this project is to deploy Elasticsearrch cluster using Ansible for
 automation.
