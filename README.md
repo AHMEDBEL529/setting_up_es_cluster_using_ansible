@@ -150,3 +150,5 @@ node1                      : ok=40   changed=0    unreachable=0    failed=0    s
 node2                      : ok=40   changed=2    unreachable=0    failed=0    skipped=125  rescued=0    ignored=0   
 node3                      : ok=40   changed=0    unreachable=0    failed=0    skipped=92   rescued=0    ignored=0  
 ```
+Now your cluster should be up and running. To test if your cluster is working well, check this video : 
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/gUAATvQJu3E/0.jpg)](https://www.youtube.com/watch?v=gUAATvQJu3E)
