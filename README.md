@@ -137,3 +137,16 @@ node1 | SUCCESS => {
 }
 
 ```
+## Running the Playbook :
+Let's run the Playbook :
+```console
+$ ansible-playbook -i ~/hosts_2 ~/ansible-playbook/elk.yml --extra-vars "ansible_sudo_pass=your_sudo_password"
+```
+The execution may take some time, be patient.
+The output for me :
+```
+PLAY RECAP ********************************************************************************************************************
+node1                      : ok=40   changed=0    unreachable=0    failed=0    skipped=125  rescued=0    ignored=0   
+node2                      : ok=40   changed=2    unreachable=0    failed=0    skipped=125  rescued=0    ignored=0   
+node3                      : ok=40   changed=0    unreachable=0    failed=0    skipped=92   rescued=0    ignored=0  
+```
