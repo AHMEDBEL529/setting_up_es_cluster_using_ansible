@@ -46,5 +46,94 @@ $ vim elk.yml
 ```
 My Playbook file looks like this :
 ```
-content
+- hosts: elk_master_nodes
+  roles:
+    - role: elastic.elasticsearch
+  vars:
+    es_version: 7.10.0
+    es_enable_xpack: false
+    es_data_dirs:
+      - "/data/elasticsearch/data"
+    es_log_dir: "/data/elasticsearch/logs"
+    es_java_install: true
+    es_heap_size: "1g"
+    es_config:
+      cluster.name: "elk-cluster"
+      cluster.initial_master_nodes: ["10.5.5.12:9300"] #replace with the ip adress of the master node
+      discovery.seed_hosts: ["10.5.5.12:9300","10.5.3.115:9300","10.5.0.101:9300"] #replace with ip adresses of different nodes. 
+      http.port: 9200
+      node.data: false
+      node.master: true
+      bootstrap.memory_lock: false
+      network.host: '0.0.0.0'
+    es_plugins:
+     - plugin: ingest-attachment
+
+- hosts: elk_data_nodes
+  roles:
+    - role: elastic.elasticsearch
+  vars:
+    es_version: 7.10.0
+    es_enable_xpack: false
+    es_data_dirs:
+      - "/data/elasticsearch/data"
+    es_log_dir: "/data/elasticsearch/logs"
+    es_java_install: true
+    es_config:
+      cluster.name: "elk-cluster"
+      cluster.initial_master_nodes: ["10.5.5.12:9300"] #replace with the ip adress of the master node
+      discovery.seed_hosts: ["10.5.5.12:9300","10.5.3.115:9300","10.5.0.101:9300"] #replace with ip adresses of different nodes. 
+      http.port: 9200
+      node.data: true
+      node.master: false
+      bootstrap.memory_lock: false
+      network.host: '0.0.0.0'
+    es_plugins:
+      - plugin: ingest-attachment
+```
+## Creating the inventory file :
+Now let’s create the inventory file for deployment:
+```console
+$ vim hosts
+```
+```
+[servers]
+node1 ansible_host=10.5.5.12
+node2 ansible_host=10.5.3.115
+node3 ansible_host=10.5.0.101
+
+[elk_master_nodes]
+node1
+[elk_data_nodes]
+node2
+node3
+```
+We can test the connection to the nodes by typing the following command :
+```console
+$ ansible all -m ping -u nodes -i ~/hosts
+```
+here's the output in my case :
+```
+node3 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+node2 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+node1 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+
 ```
