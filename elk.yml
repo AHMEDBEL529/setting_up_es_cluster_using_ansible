@@ -10,9 +10,9 @@
     es_java_install: true
     es_heap_size: "1g"
     es_config:
-      cluster.name: "elk-cluster-belgani-zouhdi"
-      cluster.initial_master_nodes: ["10.5.5.12:9300"]
-      discovery.seed_hosts: ["10.5.5.12:9300","10.5.3.115:9300","10.5.0.101:9300"]
+      cluster.name: "elk-cluster"
+      cluster.initial_master_nodes: ["10.5.5.12:9300"] #replace with the ip adress of the master node
+      discovery.seed_hosts: ["10.5.5.12:9300","10.5.3.115:9300","10.5.0.101:9300"] #replace with ip adresses of different nodes. 
       http.port: 9200
       node.data: false
       node.master: true
@@ -32,9 +32,9 @@
     es_log_dir: "/data/elasticsearch/logs"
     es_java_install: true
     es_config:
-      cluster.name: "elk-cluster-belgani-zouhdi"
-      cluster.initial_master_nodes: ["10.5.5.12:9300"]
-      discovery.seed_hosts: ["10.5.5.12:9300","10.5.3.115:9300","10.5.0.101:9300"]
+      cluster.name: "elk-cluster"
+      cluster.initial_master_nodes: ["10.5.5.12:9300"] #replace with the ip adress of the master node
+      discovery.seed_hosts: ["10.5.5.12:9300","10.5.3.115:9300","10.5.0.101:9300"] #replace with ip adresses of different nodes. 
       http.port: 9200
       node.data: true
       node.master: false
