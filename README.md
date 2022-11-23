@@ -140,7 +140,7 @@ node1 | SUCCESS => {
 ## Running the Playbook :
 Let's run the Playbook :
 ```console
-$ ansible-playbook -i ~/hosts_2 ~/ansible-playbook/elk.yml --extra-vars "ansible_sudo_pass=your_sudo_password"
+$ ansible-playbook -i ~/hosts ~/elk.yml --extra-vars "ansible_sudo_pass=your_sudo_password"
 ```
 The execution may take some time, be patient.
 The output for me :
